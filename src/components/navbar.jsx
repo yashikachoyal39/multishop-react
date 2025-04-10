@@ -1,5 +1,11 @@
+import { useSelector } from "react-redux";
+import { Link, useLocation } from "react-router";
+import { RiShoppingCartFill } from "react-icons/ri";
 
-export default function Navbar() {
+export default function Navbar({ categories }) {
+    const Cart = useSelector(store => store.cart.value)
+    const pathname = useLocation().pathname
+
     return (
         <>
             <div className="container-fluid bg-dark mb-30">
@@ -18,7 +24,7 @@ export default function Navbar() {
                             <i className="fa fa-angle-down text-dark" />
                         </a>
                         <nav
-                            className="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
+                            className="collapses position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
                             id="navbar-vertical"
                             style={{ width: "calc(100% - 30px)", zIndex: 999 }}
                         >
@@ -43,46 +49,24 @@ export default function Navbar() {
                                         </a>
                                     </div>
                                 </div>
-                                <a href="" className="nav-item nav-link">
-                                    Shirts
-                                </a>
-                                <a href="" className="nav-item nav-link">
-                                    Jeans
-                                </a>
-                                <a href="" className="nav-item nav-link">
-                                    Swimwear
-                                </a>
-                                <a href="" className="nav-item nav-link">
-                                    Sleepwear
-                                </a>
-                                <a href="" className="nav-item nav-link">
-                                    Sportswear
-                                </a>
-                                <a href="" className="nav-item nav-link">
-                                    Jumpsuits
-                                </a>
-                                <a href="" className="nav-item nav-link">
-                                    Blazers
-                                </a>
-                                <a href="" className="nav-item nav-link">
-                                    Jackets
-                                </a>
-                                <a href="" className="nav-item nav-link">
-                                    Shoes
-                                </a>
+                                {categories && categories.map((item, indx) => (
+                                    <Link to={`/categories/${item.slug}`} className="nav-item nav-link" key={indx}>
+                                        {item.name}
+                                    </Link>
+                                ))}
                             </div>
                         </nav>
                     </div>
                     <div className="col-lg-9">
                         <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
-                            <a href="" className="text-decoration-none d-block d-lg-none">
+                            <Link to="/" className="text-decoration-none d-block d-lg-none">
                                 <span className="h1 text-uppercase text-dark bg-light px-2">
                                     Multi
                                 </span>
                                 <span className="h1 text-uppercase text-light bg-primary px-2 ml-n1">
                                     Shop
                                 </span>
-                            </a>
+                            </Link>
                             <button
                                 type="button"
                                 className="navbar-toggler"
@@ -92,20 +76,20 @@ export default function Navbar() {
                                 <span className="navbar-toggler-icon" />
                             </button>
                             <div
-                                className="collapse navbar-collapse justify-content-between"
+                                className="collapses navbar-collapse justify-content-between"
                                 id="navbarCollapse"
                             >
                                 <div className="navbar-nav mr-auto py-0">
-                                    <a href="index.html" className="nav-item nav-link active">
+                                    <Link to="/" className={pathname === "/" ? "nav-item nav-link active" : "nav-item nav-link"}>
                                         Home
-                                    </a>
-                                    <a href="shop.html" className="nav-item nav-link">
+                                    </Link>
+                                    <Link to="/products" className={pathname.includes("/products") ? "nav-item nav-link active" : "nav-item nav-link"}>
                                         Shop
-                                    </a>
-                                    <a href="detail.html" className="nav-item nav-link">
-                                        Shop Detail
-                                    </a>
-                                    <div className="nav-item dropdown">
+                                    </Link>
+                                    <Link to="/categories" className={pathname.includes("/categories") ? "nav-item nav-link active" : "nav-item nav-link"}>
+                                        Categories
+                                    </Link>
+                                    {/* <div className="nav-item dropdown">
                                         <a
                                             href="#"
                                             className="nav-link dropdown-toggle"
@@ -114,37 +98,39 @@ export default function Navbar() {
                                             Pages <i className="fa fa-angle-down mt-1" />
                                         </a>
                                         <div className="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                            <a href="cart.html" className="dropdown-item">
+                                            <Link to="/cart" className="dropdown-item">
                                                 Shopping Cart
-                                            </a>
-                                            <a href="checkout.html" className="dropdown-item">
+                                            </Link>
+                                            <Link to="/checkout" className="dropdown-item">
                                                 Checkout
-                                            </a>
+                                            </Link>
                                         </div>
-                                    </div>
-                                    <a href="contact.html" className="nav-item nav-link">
+                                    </div> */}
+                                    <Link to="/contact" className={pathname.includes("/contact") ? "nav-item nav-link active" : "nav-item nav-link"}>
                                         Contact
-                                    </a>
+                                    </Link>
                                 </div>
-                                <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
-                                    <a href="" className="btn px-0">
-                                        <i className="fas fa-heart text-primary" />
-                                        <span
-                                            className="badge text-secondary border border-secondary rounded-circle"
-                                            style={{ paddingBottom: 2 }}
-                                        >
-                                            0
-                                        </span>
-                                    </a>
-                                    <a href="" className="btn px-0 ml-3">
-                                        <i className="fas fa-shopping-cart text-primary" />
-                                        <span
-                                            className="badge text-secondary border border-secondary rounded-circle"
-                                            style={{ paddingBottom: 2 }}
-                                        >
-                                            0
-                                        </span>
-                                    </a>
+                                <div className="navbar-nav d-flex justify-content-center ml-auto py-0 d-none d-lg-block">
+                                    <div className="flex items-center justify-center gap-2">
+                                        <a href="" className="btn px-0">
+                                            <i className="fas fa-heart text-primary" />
+                                            <span
+                                                className="badge text-secondary border border-secondary rounded-circle"
+                                                style={{ paddingBottom: 2 }}
+                                            >
+                                                0
+                                            </span>
+                                        </a>
+                                        <Link to="/cart" className="btn d-flex justify-content-center px-0">
+                                            <RiShoppingCartFill size={20} className="text-primary" />
+                                            <span
+                                                className="badge text-secondary border border-secondary rounded-circle"
+                                                style={{ paddingBottom: 2 }}
+                                            >
+                                                {Cart.length}
+                                            </span>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         </nav>

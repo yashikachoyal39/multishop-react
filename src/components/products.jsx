@@ -1,6 +1,10 @@
+import { useSelector } from "react-redux";
 import ProductCard from "./productCard";
 
-export default function Products({productData}) {
+export default function Products({from,to}) {
+
+  const productData = useSelector(store=>store.products.products)
+
   return (
     <>
       {/* Products Start */}
@@ -9,7 +13,7 @@ export default function Products({productData}) {
           <span className="bg-secondary pr-3">Featured Products</span>
         </h2>
         <div className="row px-xl-5">
-          {productData && productData.map((item,index)=>(
+          {productData && productData.slice(from,to)?.map((item,index)=>(
             <ProductCard Data={item} key={index} />
            ))}
         </div>

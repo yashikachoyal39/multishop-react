@@ -39,60 +39,21 @@ export default function Footer() {
                     <i className="fa fa-angle-right mr-2" />
                     Home
                   </Link>
-                  <Link className="text-secondary mb-2" to="/shop">
+                  <Link className="text-secondary mb-2" to="/products">
                     <i className="fa fa-angle-right mr-2" />
                     Our Shop
-                  </Link>
-                  <Link className="text-secondary mb-2" to="/detail">
-                    <i className="fa fa-angle-right mr-2" />
-                    Shop Detail
                   </Link>
                   <Link className="text-secondary mb-2" to="/cart">
                     <i className="fa fa-angle-right mr-2" />
                     Shopping Cart
                   </Link>
-                  <a className="text-secondary mb-2" href="#">
-                    <i className="fa fa-angle-right mr-2" />
-                    Checkout
-                  </a>
-                  <a className="text-secondary" href="#">
+                  <Link className="text-secondary" to="/contact">
                     <i className="fa fa-angle-right mr-2" />
                     Contact Us
-                  </a>
+                  </Link>
                 </div>
               </div>
-              <div className="col-md-4 mb-5">
-                <h5 className="text-secondary text-uppercase mb-4">
-                  My Account
-                </h5>
-                <div className="d-flex flex-column justify-content-start">
-                  <a className="text-secondary mb-2" href="#">
-                    <i className="fa fa-angle-right mr-2" />
-                    Home
-                  </a>
-                  <a className="text-secondary mb-2" href="#">
-                    <i className="fa fa-angle-right mr-2" />
-                    Our Shop
-                  </a>
-                  <a className="text-secondary mb-2" href="#">
-                    <i className="fa fa-angle-right mr-2" />
-                    Shop Detail
-                  </a>
-                  <a className="text-secondary mb-2" href="#">
-                    <i className="fa fa-angle-right mr-2" />
-                    Shopping Cart
-                  </a>
-                  <a className="text-secondary mb-2" href="#">
-                    <i className="fa fa-angle-right mr-2" />
-                    Checkout
-                  </a>
-                  <a className="text-secondary" href="#">
-                    <i className="fa fa-angle-right mr-2" />
-                    Contact Us
-                  </a>
-                </div>
-              </div>
-              <div className="col-md-4 mb-5">
+              <div className="col-md-8 mb-5">
                 <h5 className="text-secondary text-uppercase mb-4">
                   Newsletter
                 </h5>
